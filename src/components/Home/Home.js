@@ -98,13 +98,13 @@ function Home(props) {
   };
 
   return (
-    <div className={classes.box}>
-      <div className={classes.menuAside}>
-        <Paper elevation={3} className={classes.menu}>
+    <Grid className={classes.box}>
+      <Grid className={classes.menuAside}>
+        <Paper elevation={3}>
           <Menu variant="plain" />
         </Paper>
-      </div>
-      <div className={classes.rightBox}>
+      </Grid>
+      <Grid className={classes.rightBox} style={{ flexGrow: 1 }}>
         <Box className={classes.box2}>
           <Grid container spacing={5} className={classes.version}>
             <Grid item xs={3}>
@@ -203,8 +203,8 @@ function Home(props) {
             )}
           </Grid>
         </Box>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 

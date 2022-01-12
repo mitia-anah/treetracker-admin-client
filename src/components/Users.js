@@ -51,6 +51,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import FormControl from '@material-ui/core/FormControl';
 
 const style = (theme) => ({
+  userContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    gap: '2rem',
+  },
   box: {
     height: '100%',
   },
@@ -563,78 +569,66 @@ function Users(props) {
   }
   // console.log(userNameValid);
   return (
-    <>
-      <Grid container className={classes.box}>
-        <Grid item xs={3}>
-          <Paper elevation={3} className={classes.menu}>
-            <Menu variant="plain" />
-          </Paper>
-        </Grid>
-        <Grid item xs={9}>
-          <Grid container className={classes.rightBox}>
-            <Grid item xs={12}>
-              <Grid
-                container
-                justify="space-between"
-                className={classes.titleBox}
-              >
+    <Grid className={classes.userContainer}>
+      <Paper elevation={3}>
+        <Menu variant="plain" />
+      </Paper>
+
+      <Grid Grid item container style={{ flexGrow: 1 }}>
+        <Grid item xs={12}>
+          <Grid container justify="space-between" className={classes.titleBox}>
+            <Grid item>
+              <Grid container>
                 <Grid item>
-                  <Grid container>
-                    <Grid item>
-                      <Group className={classes.accountIcon} />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">User Manager</Typography>
-                    </Grid>
-                  </Grid>
+                  <Group className={classes.accountIcon} />
                 </Grid>
-                <Grid item className={classes.addUserBox}>
-                  <Button
-                    onClick={handleAddUser}
-                    variant="contained"
-                    className={classes.addUser}
-                    color="primary"
-                  >
-                    ADD USER
-                  </Button>
+                <Grid item>
+                  <Typography variant="h2">User Manager</Typography>
                 </Grid>
               </Grid>
-              <Grid container direction="column" className={classes.bodyBox}>
-                <TableContainer component={Paper}>
-                  <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Username</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Status</TableCell>
-                        <TableCell>
-                          <Grid container justfy="center" alignItems="center">
-                            <Grid item>Role</Grid>
-                            <Grid item>
-                              <IconButton
-                                onClick={handlePermission}
-                                size="small"
-                              >
-                                <Help />
-                              </IconButton>
-                            </Grid>
-                          </Grid>
-                        </TableCell>
-                        <TableCell>Created</TableCell>
-                        <TableCell>Operations</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>{mapSortedUsrs(users)}</TableBody>
-                  </Table>
-                </TableContainer>
-              </Grid>
-              {!usersLoaded && (
-                <Grid item container className={classes.progressContainer}>
-                  <CircularProgress />
-                </Grid>
-              )}
+            </Grid>
+            <Grid item className={classes.addUserBox}>
+              <Button
+                onClick={handleAddUser}
+                variant="contained"
+                className={classes.addUser}
+                color="primary"
+              >
+                ADD USER
+              </Button>
             </Grid>
           </Grid>
+          <Grid container direction="column" className={classes.bodyBox}>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Username</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>
+                      <Grid container justfy="center" alignItems="center">
+                        <Grid item>Role</Grid>
+                        <Grid item>
+                          <IconButton onClick={handlePermission} size="small">
+                            <Help />
+                          </IconButton>
+                        </Grid>
+                      </Grid>
+                    </TableCell>
+                    <TableCell>Created</TableCell>
+                    <TableCell>Operations</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>{mapSortedUsrs(users)}</TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+          {!usersLoaded && (
+            <Grid item container className={classes.progressContainer}>
+              <CircularProgress />
+            </Grid>
+          )}
         </Grid>
       </Grid>
       <Dialog
@@ -984,7 +978,7 @@ function Users(props) {
           </>
         }
       />
-    </>
+    </Grid>
   );
 }
 

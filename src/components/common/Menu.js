@@ -14,7 +14,6 @@ import { Typography } from '@material-ui/core';
 export const MENU_WIDTH = 232;
 
 const useStyles = makeStyles((theme) => ({
-  drawer: {},
   drawerPaper: {
     width: MENU_WIDTH,
     position: 'inherit',
@@ -27,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 0, 0, 4),
   },
   menuItem: {
+    width: MENU_WIDTH,
     '&:hover': {
       backgroundColor: theme.palette.primary.lightVery,
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
