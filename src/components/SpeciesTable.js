@@ -137,7 +137,7 @@ const SpeciesTable = (props) => {
     rowsPerPage -
     Math.min(
       rowsPerPage,
-      speciesContext.speciesList.length - page * rowsPerPage,
+      speciesContext.speciesList.length - page * rowsPerPage
     );
 
   useEffect(() => {
@@ -244,8 +244,6 @@ const SpeciesTable = (props) => {
       }}
     />
   );
-
-  // console.log('context', context);
 
   return (
     <Grid className={classes.speciesTableContainer}>

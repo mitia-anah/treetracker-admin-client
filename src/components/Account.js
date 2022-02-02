@@ -117,7 +117,6 @@ function Account(props) {
     const result1 = await isOldPwdReal(oldPassword);
     const result2 = await doesNewPwdMatch(newPassword, confirmedPassword);
     if (result1 && result2) {
-      //patch the new password
       let res = await axios.put(
         `${process.env.REACT_APP_API_ROOT}/auth/admin_users/${user.id}/password`,
         {
@@ -125,12 +124,10 @@ function Account(props) {
         },
         {
           headers: { Authorization: token },
-        },
+        }
       );
       if (res.status === 200) {
-        /*WARN!no update on the appContext here*/
         setErrorMessage('Success!');
-        /* remove Remember me and force re-login */
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         appContext.logout();
@@ -157,7 +154,6 @@ function Account(props) {
     let result;
 
     try {
-      /* TODO: login bypassing admin auth ?*/
       const res = await axios.post(
         `${process.env.REACT_APP_API_ROOT}/auth/validate`,
         {
@@ -165,7 +161,7 @@ function Account(props) {
         },
         {
           headers: { Authorization: token },
-        },
+        }
       );
       if (res.status === 200) {
         setErrorMessage('');
@@ -182,7 +178,6 @@ function Account(props) {
     return result;
   };
 
-  /* to update html document title */
   useEffect(() => {
     document.title = `Account - ${documentTitle}`;
   });
@@ -289,10 +284,6 @@ function Account(props) {
               label="old password"
               type="password"
               id="password"
-              // helperText={
-              //   userName === '' ? 'Field is required' : '' /*touched.email ? errors.email : ""*/
-              // }
-              // error={userName === '' /*touched.email && Boolean(errors.email)*/}
               onChange={onChangeOldPwd}
               value={oldPassword}
             />

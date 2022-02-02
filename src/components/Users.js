@@ -163,7 +163,7 @@ function Users(props) {
       `${process.env.REACT_APP_API_ROOT}/auth/permissions`,
       {
         headers: { Authorization: token },
-      },
+      }
     );
     if (res.status === 200) {
       setPermissions(res.data);
@@ -175,7 +175,7 @@ function Users(props) {
       `${process.env.REACT_APP_API_ROOT}/auth/admin_users`,
       {
         headers: { Authorization: token },
-      },
+      }
     );
     if (res.status === 200) {
       setUsers(res.data);
@@ -190,7 +190,6 @@ function Users(props) {
     load();
   }, [load]);
 
-  /* to update html document title */
   useEffect(() => {
     document.title = `User Manager - ${documentTitle}`;
   }, []);
@@ -216,7 +215,7 @@ function Users(props) {
         `${process.env.REACT_APP_API_ROOT}/auth/admin_users/${userDelete.id}`,
         {
           headers: { Authorization: token },
-        },
+        }
       );
       setSaveInProgress(false);
       if (res.status === 204) {
@@ -227,7 +226,7 @@ function Users(props) {
       } else {
         console.error('delete fail:', res);
         setErrorMessage(
-          'An error occured while deleting user. Please contact the system admin.',
+          'An error occured while deleting user. Please contact the system admin.'
         );
         return;
       }
@@ -235,7 +234,7 @@ function Users(props) {
       setSaveInProgress(false);
       console.error(e);
       setErrorMessage(
-        'An error occured while deleting user. Please contact the system admin.',
+        'An error occured while deleting user. Please contact the system admin.'
       );
     }
   }
@@ -269,7 +268,7 @@ function Users(props) {
       }
       return accumulator;
     },
-    [],
+    []
   );
 
   const handleToggle = (value) => () => {
@@ -316,7 +315,7 @@ function Users(props) {
             value.policy?.organization &&
             allowedOrganizationIds.length > 0 &&
             !allowedOrganizationIds.some(
-              (orgId) => orgId === value.policy.organization.id,
+              (orgId) => orgId === value.policy.organization.id
             );
 
           return (
@@ -352,11 +351,9 @@ function Users(props) {
       setErrorMessage('Missing Field');
       return;
     }
-    //upload
 
     setSaveInProgress(true);
     if (userEditing.id === undefined) {
-      //add
       let res = await axios.post(
         `${process.env.REACT_APP_API_ROOT}/auth/admin_users/`,
         {
@@ -365,7 +362,7 @@ function Users(props) {
         },
         {
           headers: { Authorization: token },
-        },
+        }
       );
       setSaveInProgress(false);
       if (res.status === 201) {
@@ -386,7 +383,7 @@ function Users(props) {
         },
         {
           headers: { Authorization: token },
-        },
+        }
       );
       setSaveInProgress(false);
       if (res.status === 200) {
@@ -402,17 +399,15 @@ function Users(props) {
   }
 
   function handleChangePassword(user) {
-    //auto generate password before open password Modal
     let pwd = pwdGenerator.generate({
       length: 10,
-      numbers: true /*generated pwd comprised of number, upper/lowercase */,
+      numbers: true,
     });
     setNewPassword(pwd);
     setUserPassword(user);
   }
 
   async function handleSavePassword() {
-    //upload
     setSaveInProgress(true);
     let res = await axios.put(
       `${process.env.REACT_APP_API_ROOT}/auth/admin_users/${userPassword.id}/password`,
@@ -421,7 +416,7 @@ function Users(props) {
       },
       {
         headers: { Authorization: token },
-      },
+      }
     );
     setSaveInProgress(false);
     if (res.status === 200) {
@@ -487,7 +482,6 @@ function Users(props) {
   }
 
   const handleCopy = () => {
-    /*get the deep nested <input> tag from <TextField/> */
     passwordRef.current.childNodes[1].childNodes[0].select();
     document.execCommand('copy');
     setCopyMsg('Copied!');
@@ -542,7 +536,7 @@ function Users(props) {
             <Grid key={`role_${idx}`}>
               {permissions.reduce(
                 (a, c) => a || (c.id === r ? c.roleName : undefined),
-                undefined,
+                undefined
               )}
             </Grid>
           ))}
@@ -567,7 +561,7 @@ function Users(props) {
       </TableRow>
     ));
   }
-  // console.log(userNameValid);
+
   return (
     <Grid className={classes.userContainer}>
       <Paper elevation={3}>
@@ -638,12 +632,6 @@ function Users(props) {
       >
         <DialogTitle id="form-dialog-title">User Detail</DialogTitle>
         <DialogContent>
-          {/*
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We will send updates
-          occasionally.
-        </DialogContentText>
-        */}
           <TextField
             autoFocus
             id="userName"
@@ -832,12 +820,6 @@ function Users(props) {
       >
         <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
         <DialogContent>
-          {/*
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We will send updates
-          occasionally.
-        </DialogContentText>
-        */}
           <Grid container className={classes.noteBox}>
             <Grid item xs={1}>
               <EmojiObjects />
