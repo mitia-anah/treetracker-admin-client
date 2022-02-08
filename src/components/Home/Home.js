@@ -96,7 +96,7 @@ function Home(props) {
   return (
     <Grid className={classes.box}>
       <Grid className={classes.menuAside}>
-        <Paper elevation={3}>
+        <Paper style={{ boxShadow: 'none' }}>
           <Menu variant="plain" />
         </Paper>
       </Grid>
